@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PawPal | Virtual Pet World</title>
+  <link rel="stylesheet" href="style1.css">
+</head>
+
+<body>
+
+  <header class="topbar">
+    <div class="logo">🐾 PawPal</div>
+    <div class="top-right">
+      <div class="coin">🪙 <span id="coins">100</span></div>
+      <button class="theme-btn" onclick="toggleTheme()">🌙</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <button class="nav-btn" onclick="showPage('home')">🏠 Home</button>
+      <button class="nav-btn" onclick="showPage('care')">🧸 Pet Care</button>
+      <button class="nav-btn" onclick="showPage('bath')">🛁 Bath Time</button>
+      <button class="nav-btn" onclick="showPage('games')">🎮 Games</button>
+      <button class="nav-btn" onclick="showPage('shop')">🛍️ Pet Shop</button>
+      <button class="nav-btn" onclick="showPage('dress')">👗 Dress Up</button>
+      <button class="nav-btn" onclick="showPage('room')">🏡 My Room</button>
+      <button class="nav-btn" onclick="showPage('achievements')">🏆 Awards</button>
+    </aside>
+
+    <main class="main">
+
+      <!-- ADOPTION -->
+      <section id="adoption" class="page active">
+        <div class="welcome">
+          <h1>Welcome to PawPal! 💗</h1>
+          <p>Adopt a little friend and start your own adventure!</p>
+        </div>
+
+        <div class="pet-select">
+          <div class="choose-card selected" onclick="choosePet('cat',event)">
+            <span>🐱</span>
+            <h3>Kitty</h3>
+          </div>
+          <div class="choose-card" onclick="choosePet('dog',event)">
+            <span>🐶</span>
+            <h3>Puppy</h3>
+          </div>
+          <div class="choose-card" onclick="choosePet('bunny',event)">
+            <span>🐰</span>
+            <h3>Bunny</h3>
+          </div>
+        </div>
+
+        <input id="petNameInput" placeholder="Give your pet a name..." maxlength="15">
+        <button class="primary" onclick="adoptPet()">Adopt my pet 💕</button>
+      </section>
+
+      <!-- HOME -->
+      <section id="home" class="page">
+        <h1>My Little World 🌷</h1>
+        <p class="subtitle">Your little friend is waiting for you!</p>
+
+        <div class="pet-room" id="petRoom">
+          <div class="weather">☀️ A lovely day</div>
+          <div class="pet-display">
+            <div id="accessory" class="accessory"></div>
+            <div id="petEmoji" class="pet">🐱</div>
+          </div>
+          <h2 id="petName">Mochi</h2>
+          <div class="mood" id="mood">Feeling Happy 💖</div>
+          <p id="petMessage">You're my favorite human!</p>
+        </div>
+
+        <div class="stats">
+          <div class="stat-card">🍗 Hunger<div class="bar">
+              <div id="hungerBar"></div>
+            </div><span id="hungerText"></span></div>
+          <div class="stat-card">💖 Happiness<div class="bar">
+              <div id="happyBar"></div>
+            </div><span id="happyText"></span></div>
+          <div class="stat-card">⚡ Energy<div class="bar">
+              <div id="energyBar"></div>
+            </div><span id="energyText"></span></div>
+          <div class="stat-card">🫧 Cleanliness<div class="bar">
+              <div id="cleanBar"></div>
+            </div><span id="cleanText"></span></div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-card">⭐ Level <span id="level">1</span></div>
+          <div class="info-card">✨ XP <span id="xp">0</span></div>
+          <div class="info-card">🎮 Games <span id="gameCount">0</span></div>
+        </div>
+      </section>
+
+      <!-- CARE -->
+      <section id="care" class="page">
+        <h1>Pet Care 🧸</h1>
+        <p class="subtitle">Take care of your little friend!</p>
+
+        <div class="activity-grid">
+          <div class="activity-card">
+            <div>🍓</div>
+            <h3>Feed</h3>
+            <p>Give your pet something yummy.</p>
+            <button onclick="feedPet()">Feed pet</button>
+          </div>
+          <div class="activity-card">
+            <div>🎾</div>
+            <h3>Play</h3>
+            <p>Spend some fun time together.</p>
+            <button onclick="playPet()">Play together</button>
+          </div>
+          <div class="activity-card">
+            <div>😴</div>
+            <h3>Sleep</h3>
+            <p>Let your pet rest and recharge.</p>
+            <button onclick="sleepPet()">Take a nap</button>
+          </div>
+          <div class="activity-card">
+            <div>🪮</div>
+            <h3>Groom</h3>
+            <p>Brush your pet's fluffy fur.</p>
+            <button onclick="groomPet()">Brush fur</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- BATH -->
+      <section id="bath" class="page">
+        <h1>Bubble Bath 🛁</h1>
+        <p class="subtitle">Let's make your pet squeaky clean!</p>
+
+        <div class="bath-area">
+          <div id="bathPet" class="bath-pet">🐱</div>
+          <div id="bathMessage">Your pet is ready for bath time!</div>
+          <div class="bubble-decor">🫧 🫧 🫧 🫧 🫧</div>
+        </div>
+
+        <div class="bath-steps">
+          <button onclick="bathStep(1)">🧴 Soap</button>
+          <button onclick="bathStep(2)">🫧 Wash</button>
+          <button onclick="bathStep(3)">🚿 Rinse</button>
+          <button onclick="bathStep(4)">🧻 Dry</button>
+        </div>
+        <p id="bathProgress">Bath progress: 0 / 4</p>
+        <button class="primary" onclick="finishBath()">✨ Finish bath</button>
+        <button class="secondary" onclick="resetBath()">Reset bath</button>
+      </section>
+
+      <!-- GAMES -->
+      <section id="games" class="page">
+        <h1>Game Corner 🎮</h1>
+        <p class="subtitle">Play games and earn coins!</p>
+
+        <div class="game-card">
+          <h2>✊ Rock Paper Scissors</h2>
+          <p>Challenge your pet!</p>
+          <div class="rps">
+            <button onclick="rps('rock')">✊</button>
+            <button onclick="rps('paper')">✋</button>
+            <button onclick="rps('scissors')">✌️</button>
+          </div>
+          <h3 id="rpsResult">Ready to play?</h3>
+        </div>
+
+        <div class="game-card">
+          <h2>🧠 Memory Match</h2>
+          <p>Find all 8 matching pairs!</p>
+          <div id="memoryBoard" class="memory-board"></div>
+          <p id="memoryResult"></p>
+          <button onclick="startMemory()">🔄 New Game</button>
+        </div>
+      </section>
+
+      <!-- SHOP -->
+      <section id="shop" class="page">
+        <h1>Pet Shop 🛍️</h1>
+        <p class="subtitle">Buy little goodies for your pet!</p>
+
+        <div class="shop-grid">
+          <div class="shop-card"><span>🍰</span>
+            <h3>Cake Treat</h3>
+            <p>+15 happiness</p><b>15 coins</b><button onclick="buyItem('treat',15)">Buy</button>
+          </div>
+          <div class="shop-card"><span>🧴</span>
+            <h3>Shampoo</h3>
+            <p>Bath essential</p><b>20 coins</b><button onclick="buyItem('shampoo',20)">Buy</button>
+          </div>
+          <div class="shop-card"><span>🎾</span>
+            <h3>Ball Toy</h3>
+            <p>Playtime fun</p><b>25 coins</b><button onclick="buyItem('toy',25)">Buy</button>
+          </div>
+          <div class="shop-card"><span>🎀</span>
+            <h3>Pink Bow</h3>
+            <p>Super cute</p><b>30 coins</b><button onclick="buyItem('bow',30)">Buy</button>
+          </div>
+          <div class="shop-card"><span>👑</span>
+            <h3>Royal Crown</h3>
+            <p>Fit for royalty</p><b>50 coins</b><button onclick="buyItem('crown',50)">Buy</button>
+          </div>
+          <div class="shop-card"><span>🕶️</span>
+            <h3>Cool Shades</h3>
+            <p>Stylish look</p><b>35 coins</b><button onclick="buyItem('shades',35)">Buy</button>
+          </div>
+          <div class="shop-card"><span>🌸</span>
+            <h3>Flower Clip</h3>
+            <p>Pretty flower</p><b>25 coins</b><button onclick="buyItem('flower',25)">Buy</button>
+          </div>
+          <div class="shop-card"><span>🧢</span>
+            <h3>Cap</h3>
+            <p>Little hat</p><b>30 coins</b><button onclick="buyItem('cap',30)">Buy</button>
+          </div>
+        </div>
+
+        <h2 class="inventory-title">🎒 My Inventory</h2>
+        <div id="inventoryDisplay" class="inventory"></div>
+      </section>
+
+      <!-- DRESS UP -->
+      <section id="dress" class="page">
+        <h1>Dress Up Studio 👗</h1>
+        <p class="subtitle">Pick an accessory you own!</p>
+
+        <div class="dress-preview pet-room">
+          <div id="dressAccessory" class="accessory"></div>
+          <div id="dressPet" class="pet">🐱</div>
+          <h2 id="dressName">Your Pet</h2>
+        </div>
+
+        <div class="dress-options">
+          <button onclick="wear('🎀','bow')">🎀 Bow</button>
+          <button onclick="wear('👑','crown')">👑 Crown</button>
+          <button onclick="wear('🕶️','shades')">🕶️ Shades</button>
+          <button onclick="wear('🌸','flower')">🌸 Flower</button>
+          <button onclick="wear('🧢','cap')">🧢 Cap</button>
+          <button onclick="wear('','')">❌ Remove</button>
+        </div>
+      </section>
+
+      <!-- ROOM -->
+      <section id="room" class="page">
+        <h1>Room Makeover 🏡</h1>
+        <p class="subtitle">Choose a room for your little friend!</p>
+
+        <div class="room-preview" id="roomPreview">
+          <div id="roomPet" class="pet">🐱</div>
+          <h2 id="roomPetName">Your Pet</h2>
+        </div>
+
+        <div class="room-options">
+          <button onclick="changeRoom('pink')">🌸 Pink Room</button>
+          <button onclick="changeRoom('garden')">🌿 Garden</button>
+          <button onclick="changeRoom('sky')">☁️ Sky Room</button>
+          <button onclick="changeRoom('night')">🌙 Night Room</button>
+        </div>
+      </section>
+
+      <!-- ACHIEVEMENTS -->
+      <section id="achievements" class="page">
+        <h1>My Achievements 🏆</h1>
+        <p class="subtitle">Collect badges as you care for your pet!</p>
+        <div class="achievement-grid">
+          <div class="achievement" id="achAdopt">🐾<h3>Best Friends</h3>
+            <p>Adopt a pet</p>
+          </div>
+          <div class="achievement" id="achCare">🧸<h3>Caring Heart</h3>
+            <p>Care 10 times</p>
+          </div>
+          <div class="achievement" id="achBath">🛁<h3>Spa Day</h3>
+            <p>Complete a bath</p>
+          </div>
+          <div class="achievement" id="achGames">🎮<h3>Game Master</h3>
+            <p>Play 5 games</p>
+          </div>
+          <div class="achievement" id="achCoins">🪙<h3>Coin Collector</h3>
+            <p>Collect 100 coins</p>
+          </div>
+          <div class="achievement" id="achLevel">⭐<h3>Growing Up</h3>
+            <p>Reach level 5</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="script1.js"></script>
+</body>
+
+</html>
